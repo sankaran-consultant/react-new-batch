@@ -34,22 +34,24 @@ console.log('-data-types-');
 // b. string
 //-----------------------------
 
-// var name = "Nag";
-// var subject = 'javascript';
+/*
 
-// var dynamicString = "the trainer is " + name;
-// //or  ( es6 ==> string interpolation)
-// var dynamicString2 = `the trainer is ${name}`;
-// var multiLineString = `
-//     line-1
-//     line-2
-// `;
-// var htmlTemplate = `
-//     <div>
-//     <h1>${name}</h1>
-//     </div>
-// `
+var name = "Nag";
+var subject = 'javascript';
 
+var dynamicString = "the trainer is " + name;
+//or  ( es6 ==> string interpolation)
+var dynamicString2 = `the trainer is ${name}`;
+var multiLineString = `
+    line-1
+    line-2
+`;
+var htmlTemplate = `
+    <div>
+    <h1>${name}</h1>
+    </div>
+`
+*/
 
 //-----------------------------
 // c. number
