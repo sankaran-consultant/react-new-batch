@@ -61,6 +61,7 @@ console.log('-arrow-function-')
 
 
 /*
+
 let nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
 // nums.sort();
 // nums.sort(function (x, y) { return x - y })
@@ -68,6 +69,7 @@ let nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
 // nums.sort((x, y) => { return x - y })
 //or
 nums.sort((x, y) => x - y)
+
 */
 
 
@@ -78,8 +80,7 @@ nums.sort((x, y) => x - y)
     by default , regular-function(s) can be bindable to any object
     statically or dynamically
 
-
-    imp-note :
+    but
 
     arrow-function always belongs to creator-object
 
@@ -112,10 +113,11 @@ askQues.call(enemyTnr, "Q2")
 
 */
 
-
+//----------------------------------------------------
 // Quiz
+//----------------------------------------------------
 
-
+/* 
 // console.log(this)
 
 let regFunc=function(){
@@ -136,4 +138,52 @@ let o1={
 }
 
 o1.regFunc();
-o1.arrFunc();
+o1.arrFunc(); 
+
+*/
+
+//----------------------------------------------------
+
+
+// let invoice = {
+//     num: 123,
+//     process: function () {
+//         console.log("INV-" + this.num + " processed");
+//     }
+// }
+
+//
+
+
+// let invoice = {
+//     num: 123,
+//     process: () => {
+//         console.log("INV-" + this.num + " processed");
+//     }
+// }
+
+
+
+// let invoice = {
+//     num: 123,
+//     process: function () {
+//         console.log("INV-" + this.num + " processed partially");
+//         return function(){
+//             console.log("INV-" + this.num + " processed completly");
+//         }
+//     }
+// }
+
+
+// let invoice = {
+//     num: 123,
+//     process: function () {
+//         console.log("INV-" + this.num + " processed partially");
+//         return ()=>{
+//             console.log("INV-" + this.num + " processed completly");
+//         }
+//     }
+// }
+
+// let complete=invoice.process()
+// complete();
