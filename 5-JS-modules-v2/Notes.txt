@@ -71,3 +71,18 @@ Webpack TOOL
 
 
 -------------------------------------------------------
+
+//----------------------------------------------------
+// ES module standard ( from ES6 )
+//----------------------------------------------------
+
+
+    => every .js file is module by default
+    => all var & functions are private to the module by default.
+    => to abstract/export any member(s), use 'export' object
+    => to require/import any module, use 'import' function
+    => group related modules into package with description file ( package.json )
+
+
+
+imp-note: both browser & node.js not yet implemented this standard
