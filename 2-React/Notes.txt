@@ -1,0 +1,9 @@
+
+
+
+----------------------------------
+database   : SQL/NoSQL
+api-server :  spring - rest-api
+UI         : react web-ui & mobile-UI
+----------------------------------
+

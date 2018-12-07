@@ -3,6 +3,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import PropTypes from 'prop-types'
 import Greeting from './Greeting';
+import CounterBox from './CounterBox';
+import Box from './Box';
+import Product from './Product';
+import Employee from './Employee';
+import A from './A';
 
 class App extends Component {
 
@@ -34,14 +39,49 @@ class App extends Component {
         <span className="badge badge-dark">{trainer}</span></h1>
         <hr />
 
+        <A value={100} />
+        <hr />
+        <A value={200} />
+
+        
+
+        <hr />
+        <Box>
+          <Product />
+          <Product />
+        </Box>
+        <Box>
+          <Employee />
+          <Employee />
+        </Box>
+        <hr />
+        <CounterBox />
+        <hr />
         <button onClick={e => this.changeMessage('good morning')} className="btn btn-primary">GM</button>&nbsp;
         <button onClick={e => this.changeMessage('good noon')} className="btn btn-primary">GN</button>&nbsp;
         <button onClick={e => this.changeMessage('good evening')} className="btn btn-primary">GE</button>&nbsp;
+        <button onClick={e => this.changeMessage('')} className="btn btn-danger">Remove</button>&nbsp;
 
         <hr />
-        <Greeting message={message} />
+        {message ? <Greeting message={message} /> : null}
       </div>
     );
+  }
+
+  componentDidCatch() {
+    //..
+  }
+
+  componentDidMount() {
+    console.log("App::componentDidMount");
+
+    // n/w request
+
+    setTimeout(() => {
+      //let serverMessage = "Hello! from server"
+      //this.setState({ message: serverMessage })
+    }, 2000);
+
   }
 }
 

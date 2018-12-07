@@ -19,6 +19,23 @@ class Greeting extends Component {
             </div>
         );
     }
+    componentDidMount() {
+        console.log("Greeting::componentDidMount");
+        this.interval = setInterval(() => {
+            // this.forceUpdate();
+        }, 500)
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("Greeting::shouldComponentUpdate");
+        return this.props.message !== nextProps.message;
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("Greeting::componentDidUpdate");
+    }
+    componentWillUnmount() {
+        clearInterval(this.interval)
+        console.log("Greeting::componentWillUnmount");
+    }
 }
 
 Greeting.propTypes = {
@@ -27,5 +44,7 @@ Greeting.propTypes = {
 Greeting.defaultProps = {
     message: "Hello World!"
 }
+
+Greeting.displayName = "wish"
 
 export default Greeting;

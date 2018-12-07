@@ -9,3 +9,10 @@ component
     - state  ==> mutable data on component
 
 ---------------------------------------------------------------    
+
+- component's life-cycle
+
+---------------------------------------------------------------    
+
+
+- Container Components
