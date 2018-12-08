@@ -8,7 +8,7 @@ class Navbar extends Component {
         return (
             <div>
                 <nav className="navbar navbar-light bg-primary">
-                    <a className="navbar-brand" href="#">{title}</a>
+                    <a className="navbar-brand" href="#/">{title}</a>
                 </nav>
             </div>
         );
