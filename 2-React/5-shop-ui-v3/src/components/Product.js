@@ -51,7 +51,11 @@ class Product extends Component {
                 break;
             }
             case 3: {
-                panel = (<div>{this.renderReviews()}<hr /><ReviewForm onNewReview={newReview => this.handleNewReview(newReview)} /></div>)
+                panel = (
+                    <div>
+                        {this.renderReviews()}<hr />
+                        <ReviewForm onNewReview={newReview => this.handleNewReview(newReview)} />
+                    </div>)
                 break;
             }
             default: {
@@ -62,11 +66,7 @@ class Product extends Component {
     }
 
     render() {
-
-        // let product = this.props.value;
-        //or
         let { value: product } = this.props
-
         let { currentTab } = this.state;
         return (
             <div>

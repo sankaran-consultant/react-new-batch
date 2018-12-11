@@ -8,15 +8,24 @@ class Product extends Component {
         super(props)
         this.state = {
             currentTab: 1,
-            reviews: [
-                { stars: 5, author: 'who@mail.com', body: 'sample-review-1' },
-                { stars: 1, author: 'who@mail.com', body: 'sample-review-2' }
-            ]
+            reviews: []
         }
     }
 
     changeTab(tabIndex) {
-        this.setState({ currentTab: tabIndex })
+        this.setState({ currentTab: tabIndex }, () => {
+            if (tabIndex === 3) {
+                let { value: product } = this.props;
+                let { id } = product;
+                let api = `http://localhost:8080/api/products/${id}/reviews`;
+                fetch(api)
+                    .then(response => response.json())
+                    .then(reviews => {
+                        reviews = reviews || [];
+                        this.setState({ reviews })
+                    })
+            }
+        })
     }
 
     handleBuy() {
@@ -26,17 +35,27 @@ class Product extends Component {
     }
 
     renderBuyBtn(product) {
-        if (product.canBuy) return <button onClick={e => this.handleBuy()} className="btn btn-sm btn-primary">buy</button>
-        else return null;
+        return <button onClick={e => this.handleBuy()} className="btn btn-sm btn-primary">buy</button>
     }
     renderReviews() {
         let { reviews } = this.state;
         return reviews.map((review, idx) => <Review value={review} key={idx} />)
     }
     handleNewReview(newReview) {
-        let { reviews } = this.state;
-        reviews = reviews.concat(newReview);
-        this.setState({ reviews })
+        let { value: product } = this.props;
+        let { id } = product;
+        let api = `http://localhost:8080/api/products/${id}/reviews`;
+        fetch(api, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newReview)
+        })
+            .then(response => response.json())
+            .then(review => {
+                let { reviews } = this.state;
+                reviews = reviews.concat(review);
+                this.setState({ reviews })
+            })
     }
     renderTabPanel(product) {
         let { currentTab } = this.state;
@@ -51,7 +70,11 @@ class Product extends Component {
                 break;
             }
             case 3: {
-                panel = (<div>{this.renderReviews()}<hr /><ReviewForm onNewReview={newReview => this.handleNewReview(newReview)} /></div>)
+                panel = (
+                    <div>
+                        {this.renderReviews()}<hr />
+                        <ReviewForm onNewReview={newReview => this.handleNewReview(newReview)} />
+                    </div>)
                 break;
             }
             default: {
@@ -62,11 +85,7 @@ class Product extends Component {
     }
 
     render() {
-
-        // let product = this.props.value;
-        //or
         let { value: product } = this.props
-
         let { currentTab } = this.state;
         return (
             <div>
