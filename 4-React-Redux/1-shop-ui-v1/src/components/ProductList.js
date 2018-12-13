@@ -1,5 +1,3 @@
-
-
 import React, { Component } from 'react';
 import Product from './Product'
 
@@ -15,17 +13,23 @@ class ProductList extends Component {
     }
 
     componentDidMount() {
+
         this.unsubscribe = store.subscribe(() => {
+            console.log("ProductList - subscribing products state");  
             let products = store.getState().products;
             this.setState({ products })
         })
+ 
+
         let action = loadProducts('elec', 2);
         store.dispatch(action)
+
     }
 
     componentWillUnmount() {
         this.unsubscribe();
     }
+    
 
     renderProducts() {
         let { products } = this.state;

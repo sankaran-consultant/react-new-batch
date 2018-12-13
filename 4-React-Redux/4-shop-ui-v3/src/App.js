@@ -7,27 +7,13 @@ import NotFound from './components/NotFound';
 
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 
-import store from './store'
+import { connect } from 'react-redux';
+
 
 class App extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      cart: []
-    }
-  }
-
-  componentDidMount() {
-    store.subscribe(() => {
-      console.log('App - subscribing cart state');  
-      let cart = store.getState().cart;
-      this.setState({ cart })
-    })
-  } 
- 
   render() {
-    let { cart } = this.state
+    let { cart } = this.props
     return (
       <div className="container">
         <Navbar title="onlne-shopping" />
@@ -50,7 +36,7 @@ class App extends Component {
             <Switch>
               <Route path={"/"} exact={true} component={Home} />
               <Route path={"/products"} render={() => <ProductList />} />
-              <Route path={"/cart"} render={() => <ViewCart cart={cart} />} />
+              <Route path={"/cart"} render={() => <ViewCart />} />
               <Route component={NotFound} />
             </Switch>
 
@@ -61,4 +47,10 @@ class App extends Component {
   }
 }
 
-export default App;
+
+function mapStateToProps(state) {
+  return {
+    cart: state.cart
+  }
+}
+export default connect(mapStateToProps, null)(App);
